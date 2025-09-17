@@ -8,10 +8,10 @@ on: push #push 이벤트가 발생할 때 워크플로우 실행
 jobs:
   #작업의 구체적인 이름
   push-job:
-  #실행할 환경을 설정
-  runs-on: ubuntu-latest
-  #실행할 단계를 정의
-  steps:
-    #실행할 명령어를 정의
-    - name: 첫 번째 작업
-      run: echo "첫 번째 작업 실행 중"
+    #실행할 환경을 설정
+    runs-on: ubuntu-latest
+    #실행할 단계를 정의
+    steps:
+      #실행할 명령어를 정의
+      - name: 첫 번째 작업
+        run: echo "첫 번째 작업 실행 중"
