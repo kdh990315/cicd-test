@@ -15,3 +15,29 @@ jobs:
       #실행할 명령어를 정의
       - name: 첫 번째 작업
         run: echo "첫 번째 작업 실행 중"
+
+      - name: 여러 명령어 문장 작성하기
+        run: |
+          echo: "첫 번째 명령어"
+          echo: "두 번째 명령어"
+          echo: "세 번째 명령어"
+
+      - name: Github Actions 자체에 저장되어 있는 변수 사용해보기
+        run: |
+          echo $GITHUB_SHA
+          echo $GITHUB_REF
+          echo $GITHUB_REPOSITORY
+          echo $GITHUB_WORKSPACE
+          echo $GITHUB_ACTION
+          echo $GITHUB_ACTIONS
+          echo $GITHUB_ACTION_PATH
+          echo $GITHUB_ACTION_REPOSITORY
+          echo $GITHUB_ACTION_WORKSPACE
+          echo $GITHUB_ACTION_PATH
+          echo $GITHUB_ACTION_REPOSITORY
+          echo $GITHUB_ACTION_WORKSPACE
+
+      - name: Github Actions Secret 변수 사용해보기
+        run: |
+          echo ${{ secrets.MY_HOBBY }}
+          echo ${{ secrets.MY_JOP }}
