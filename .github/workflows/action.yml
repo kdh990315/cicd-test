@@ -1,40 +1,26 @@
-#이름 짓기
-name: Github Actions 연습하기
+# .github/workflows/actions.yml
 
-#언제 해당 워크플로우가 실행될지 정의
-on: pull_request #pull_request 이벤트가 발생할 때 워크플로우 실행
+name: Github Actions로 테스트 자동화하기
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened]
 
-# 뭐할건데?
 jobs:
-  #작업의 구체적인 이름
-  push-job:
-    #실행할 환경을 설정
+  test:
     runs-on: ubuntu-latest
-    #실행할 단계를 정의
     steps:
-      #실행할 명령어를 정의
-      - name: 첫 번째 작업
-        run: echo "첫 번째 작업 실행 중"
+      - name: Github Repository 파일 불러오기
+        uses: actions/checkout@v4
 
-      - name: 여러 명령어 문장 작성하기
-        run: |
-          echo "첫 번째 명령어"
-          echo "두 번째 명령어"
-          echo "세 번째 명령어"
+      - name: Node.js 설치
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
 
-      - name: Github Actions 자체에 저장되어 있는 변수 사용해보기
-        run: |
-          echo $GITHUB_SHA
-          echo $GITHUB_REF
-          echo $GITHUB_REPOSITORY
-          echo $GITHUB_WORKSPACE
-          echo $GITHUB_ACTION
-          echo $GITHUB_ACTIONS
-          echo $GITHUB_ACTION_PATH
-          echo $GITHUB_ACTION_REPOSITORY
-          echo $GITHUB_ACTION_WORKSPACE
+      - name: 의존성(라이브러리) 설치
+        run: npm ci
 
-      - name: Github Actions Secret 변수 사용해보기
-        run: |
-          echo ${{ secrets.MY_HOBBY }}
-          echo ${{ secrets.MY_JOP }}
+      - name: 테스트 실행하기
+        run: npm run test
