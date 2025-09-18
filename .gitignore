@@ -49,3 +49,6 @@ build/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# husky	
+.husky/_
