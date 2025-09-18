@@ -5,6 +5,7 @@ on: push
 
 jobs:
   cache:
+    runs-on: ubuntu-latest
     steps:
       - name: Github Repository 파일 불러오기
         uses: actions/checkout@v4
